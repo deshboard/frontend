@@ -12,6 +12,18 @@ cloning the project (not necessarily in the project root) and completing it's in
 
 The dev environment will look for the API at `http://localhost:8000`
 
+Then you can install the dependencies for the project:
+
+``` bash
+$ make install
+```
+
+Finally you can build the application and start watching for changes:
+
+``` bash
+$ make serve
+```
+
 
 ## License
 
