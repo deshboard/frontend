@@ -1,20 +1,14 @@
-language: node_js
+language: php
 
-sudo: required
+sudo: false
 
-services:
-    - docker
+cache:
+    directories:
+        - $HOME/.composer/cache
 
-node_js:
-    - 7
+php:
+    - 7.1
 
-env:
-    global:
-        DOCKER_COMPOSE_VERSION: 1.10.0
-
-before_install:
-    - curl -L https://git.io/vMATh | sh
-before_script: make setup
-script:
-    - make test
-    - make cs
+before_install: echo yes | pecl install apcu
+install: travis_retry composer install --prefer-dist --no-interaction
+script: vendor/bin/phpunit

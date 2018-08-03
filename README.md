@@ -2,27 +2,26 @@
 
 [![Build Status](https://img.shields.io/travis/deshboard/frontend.svg?style=flat-square)](https://travis-ci.org/deshboard/frontend)
 
-**Angular 2 based frontend for Deshboard**
 
-
-## Installation
-
-The frontend relies on the [API](https://github.com/deshboard/api), so the first thing you need to do is
-cloning the project (not necessarily in the project root) and completing it's installation guide.
-
-The dev environment will look for the API at `http://localhost:8000`
-
-Then you can install the dependencies for the project:
+## Quick start
 
 ``` bash
+$ cp docker-compose.override.yml.example docker-compose.override.yml
+$ make setup
 $ make install
+$ make start
 ```
 
-Finally you can build the application and start watching for changes:
+You should have the app running on localhost, port 8080.
 
-``` bash
-$ make serve
-```
+
+## Recommended development environment
+
+Make sure the following are installed:
+
+- latest [Docker](https://www.docker.com/) (1.13.0 at the moment)
+- latest [Docker Compose](https://docs.docker.com/compose/) (1.10.0 at the moment)
+- make
 
 
 ## License

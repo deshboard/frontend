@@ -1,5 +1,9 @@
 *
 
+!app/
+!bin/
+!composer.*
+!etc/
+!LICENSE
 !src/
-!angular-cli.json
-!package.json
+!web/

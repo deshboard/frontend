@@ -1,20 +1,40 @@
-# Install npm dependencies
-setup: install
+BUILD_IMAGES=app
 
-# Install npm dependencies
-install:
-	@npm install
+# Setup environment
+setup: build
+	mkdir -p var/docker
 
-# Serve application
-serve:
-	@ng serve
+# Build images
+build:
+ifeq ($(FORCE), true)
+	@docker-compose build --force-rm $(BUILD_IMAGES)
+else
+	@docker-compose build $(BUILD_IMAGES)
+endif
 
-# Serve application
+# Start the environment
+start:
+	@docker-compose up -d
+
+# Stop the environment
+stop:
+ifeq ($(FORCE), true)
+	@docker-compose kill
+else
+	@docker-compose stop
+endif
+
+# Clean environment
+clean: stop
+	@rm -rf vendor/ var/cache/* var/docker
+	@docker-compose rm --force
+
+# Run test suite
 test:
-	@ng test
+	@docker-compose run --rm test
 
-# Coding style checks
-cs:
-	@ng lint
+# Install dependencies
+install:
+	@docker-compose run --rm composer install --ignore-platform-reqs
 
-.PHONY: setup install serve test
+.PHONY: setup build start stop clean test install
